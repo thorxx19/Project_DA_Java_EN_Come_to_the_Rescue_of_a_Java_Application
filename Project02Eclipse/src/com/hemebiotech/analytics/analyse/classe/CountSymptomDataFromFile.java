@@ -9,7 +9,8 @@ public class CountSymptomDataFromFile implements ISymptomCount {
     /**
      * construct
      */
-    public CountSymptomDataFromFile(){}
+    public CountSymptomDataFromFile() {
+    }
 
     /**
      * method (countSymptoms) countSymptom for count different symptoms

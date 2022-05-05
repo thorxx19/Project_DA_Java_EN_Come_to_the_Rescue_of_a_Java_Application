@@ -10,7 +10,6 @@ public interface ISymptomSorting {
 
 
     /**
-     *
      * @return listSymptomsSort is array sort of symptoms
      */
     ArrayList<String> sortSymptoms(ArrayList<String> symptoms);

@@ -11,7 +11,8 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
     /**
      * construct
      */
-    public WriteSymptomDataFromFile(){}
+    public WriteSymptomDataFromFile() {
+    }
 
     /**
      * method (writeSymptoms) write symptoms in file result.out
@@ -41,10 +42,6 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
         }
         return null;
     }
-
-
-
-
 
 
 }

@@ -9,7 +9,8 @@ public class SortSymptomDataFromFile implements ISymptomSorting {
     /**
      * construct
      */
-    public SortSymptomDataFromFile(){}
+    public SortSymptomDataFromFile() {
+    }
 
     /**
      * method (sortSymptoms) sort the symptoms in alphabetical order
@@ -30,8 +31,6 @@ public class SortSymptomDataFromFile implements ISymptomSorting {
         }
         return symptoms;
     }
-
-
 
 
 }

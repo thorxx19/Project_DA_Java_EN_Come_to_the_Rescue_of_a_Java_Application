@@ -10,7 +10,6 @@ import java.util.Map;
 public interface ISymptomWriter {
 
     /**
-     *
      * @return filresult
      */
     File writeSymptom(Map<String, Integer> map);
