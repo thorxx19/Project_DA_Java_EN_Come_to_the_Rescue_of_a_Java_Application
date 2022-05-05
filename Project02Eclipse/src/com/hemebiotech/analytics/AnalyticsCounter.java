@@ -1,43 +1,45 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import com.hemebiotech.analytics.analyse.classe.CountSymptomDataFromFile;
+import com.hemebiotech.analytics.analyse.classe.ReadSymptomDataFromFile;
+import com.hemebiotech.analytics.analyse.classe.SortSymptomDataFromFile;
+import com.hemebiotech.analytics.analyse.classe.WriteSymptomDataFromFile;
 
+import java.util.ArrayList;
+import java.util.TreeMap;
+
+
+/**
+ * class principal
+ *
+ * @author o.froidefond
+ */
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
+	public AnalyticsCounter() {
+	}
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+	/**
+	 * fonction main
+	 *
+	 * @param args not used
+	 */
+	public static void main(String[] args) {
+		try {
+			ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("Project02Eclipse/src/com/hemebiotech/analytics/resources/symptoms.txt");
+			SortSymptomDataFromFile sortSymptomDataFromFile = new SortSymptomDataFromFile();
+			CountSymptomDataFromFile countSymptomDataFromFile = new CountSymptomDataFromFile();
+			WriteSymptomDataFromFile writeSymptomDataFromFile = new WriteSymptomDataFromFile();
 
-			line = reader.readLine();	// get another symptom
+			//read symptoms.txt
+			ArrayList<String> listSymptomsRaw = readSymptomDataFromFile.getSymptoms();
+			//sort sympoms in ArrayList listSymptoms
+			ArrayList<String> listSymptomsSort = sortSymptomDataFromFile.sortSymptoms(listSymptomsRaw);
+			//count symptom
+			TreeMap<String, Integer> mapSymptomCount = countSymptomDataFromFile.countSymptom(listSymptomsSort);
+			//write symptom
+			writeSymptomDataFromFile.writeSymptom(mapSymptomCount);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
 	}
 }
